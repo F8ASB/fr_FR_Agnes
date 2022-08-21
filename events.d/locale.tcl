@@ -99,6 +99,41 @@ proc playThreeDigitNumber {number} {
     }
   }
 }
+proc playFourDigitNumber {number} {
+  if {[string length $number] != 4} {
+    puts "*** WARNING: Function playFourDigitNumber received a non four digit number:$
+    return;
+  }
+ 
+  set first [string index $number 0];
+    if {($first == "1")} {
+    playMsg "Default" "1000";
+  } elseif {($first == "2")} {
+    playMsg "Default" "2000";
+  } elseif {($first == "3")} {
+    playMsg "Default" "3000";
+  } elseif {($first == "4")} {
+    playMsg "Default" "4000";
+  } elseif {($first == "5")} {
+    playMsg "Default" "5000";
+  } elseif {($first == "6")} {
+    playMsg "Default" "6000";
+  } elseif {($first == "7")} {
+    playMsg "Default" "7000";
+  } elseif {($first == "8")} {
+    playMsg "Default" "8000";
+  } elseif {($first == "9")} {
+    playMsg "Default" "9000";  
+  }
+  set first [string index $number 1];
+    if {($first == "0") || ($first == "O")} {
+    playNumber [string range $number 2 5];
+    } else {
+    playNumber [string range $number 1 5];
+    }
+ }
+
+
 
 #Say Wind Direction as as intelligent as posible.
 proc playWindDir {windDir} {
@@ -241,6 +276,38 @@ if {$fraction != 0} {
     }
   }
 }
+
+#
+# Say Voltage as intelligent as possible. Examples:
+#
+ 
+proc playVoltage {number} {
+if {[regexp {(\d+)\.(\d+)?} $number -> integer fraction]} {
+    playNumber $integer;
+    playMsg "Default" "volts";
+ 
+# No say 0 if decimal = 0
+if {$fraction != 0} {
+    spellNumber $fraction;
+}
+   return;
+}
+ 
+  while {[string length $number] &gt; 0} {
+    set len [string length $number];
+    if {$len == 1} {
+      playMsg "Default" $number;
+      set number "";
+    } elseif {$len % 2 == 0} {
+      playTwoDigitNumber [string range $number 0 1];
+      set number [string range $number 2 end];
+    } else {
+      playThreeDigitNumber [string range $number 0 2];
+      set number [string range $number 3 end];
+    }
+  }
+}
+
 
 
 #
