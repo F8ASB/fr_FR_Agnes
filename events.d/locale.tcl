@@ -158,6 +158,7 @@ if { 0 < $windDir && $windDir < 22.5} {
     } elseif {$windDir >= 112.5 && $windDir < 135 } {
         puts "  Direction E SE"
         playMsg "WeatherStation" "East";
+        playMsg "WeatherStation" "South-East";
     } elseif {$windDir >= 135 && $windDir < 157.5 } {
         puts "  Direction SE"
         playMsg "WeatherStation" "South-East";
