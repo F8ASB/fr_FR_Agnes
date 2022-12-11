@@ -252,7 +252,7 @@ if {$fraction != 0} {
 #       136.5   - onehundred and thirtysix point five
 #
 proc playTemp {number} {
-  set ch [string index $temp 0];
+  set ch [string index $number 0];
   if {$ch == "-"} {
       playMsg "SVXCard/Weatherstation" "moins";
     }
